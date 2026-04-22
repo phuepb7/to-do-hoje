@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atividades de Hoje</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --areia: #f2e8d5;
+    --terracota: #b84c2e;
+    --marrom: #5c3a1e;
+    --ouro: #c9963a;
+    --verde: #3d6b47;
+    --cinza-claro: #e8dcc8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--areia);
+    background-image:
+      radial-gradient(ellipse at 80% 20%, rgba(201,150,58,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(184,76,46,0.08) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%235c3a1e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: 'Lora', serif;
+  }
+
+  .card {
+    background: #fdf6ec;
+    border: 1.5px solid rgba(92,58,30,0.18);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow:
+      4px 4px 0px rgba(92,58,30,0.12),
+      0 20px 60px rgba(92,58,30,0.15);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header {
+    background: var(--marrom);
+    padding: 28px 30px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: rgba(201,150,58,0.15);
+  }
+
+  .header-label {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: var(--ouro);
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 30px;
+    color: var(--areia);
+    line-height: 1.1;
+  }
+
+  .header-date {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: rgba(242,232,213,0.55);
+    letter-spacing: 0.5px;
+  }
+
+  .divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracota), var(--ouro), var(--verde));
+  }
+
+  .tasks {
+    padding: 24px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+    border: 1px solid transparent;
+    animation: slideIn 0.4s ease both;
+  }
+
+  .task:nth-child(1) { animation-delay: 0.08s; }
+  .task:nth-child(2) { animation-delay: 0.16s; }
+  .task:nth-child(3) { animation-delay: 0.24s; }
+  .task:nth-child(4) { animation-delay: 0.32s; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .task:hover {
+    background: rgba(92,58,30,0.05);
+    border-color: rgba(92,58,30,0.1);
+    transform: translateX(2px);
+  }
+
+  .task.done .task-text {
+    text-decoration: line-through;
+    opacity: 0.45;
+  }
+
+  .task.done .check {
+    background: var(--verde);
+    border-color: var(--verde);
+  }
+
+  .task.done .check::after {
+    opacity: 1;
+  }
+
+  .check {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border: 2px solid rgba(92,58,30,0.3);
+    border-radius: 50%;
+    margin-top: 1px;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .check::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .task-content {
+    flex: 1;
+  }
+
+  .task-tag {
+    font-size: 9.5px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+
+  .tag-logistica { background: rgba(184,76,46,0.12); color: var(--terracota); }
+  .tag-negocio   { background: rgba(201,150,58,0.15); color: #8a6520; }
+  .tag-pessoal   { background: rgba(61,107,71,0.13);  color: var(--verde); }
+  .tag-animais   { background: rgba(92,58,30,0.1);    color: var(--marrom); }
+
+  .task-text {
+    font-size: 15px;
+    color: var(--marrom);
+    line-height: 1.45;
+    transition: opacity 0.2s, text-decoration 0.2s;
+  }
+
+  .footer {
+    padding: 14px 28px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(92,58,30,0.1);
+  }
+
+  .progress-text {
+    font-size: 12px;
+    color: rgba(92,58,30,0.5);
+    font-style: italic;
+  }
+
+  .progress-bar-wrap {
+    width: 100px;
+    height: 4px;
+    background: rgba(92,58,30,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terracota), var(--ouro));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <div class="header-label">Lista do dia</div>
+    <h1>Atividades<br>de Hoje</h1>
+    <div class="header-date" id="data-hoje"></div>
+  </div>
+  <div class="divider"></div>
+  <div class="tasks" id="task-list">
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-logistica">Logística</span>
+        <div class="task-text">Buscar cavalete em Vinicius</div>
+      </div>
+    </div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-negocio">Negócio</span>
+        <div class="task-text">Criar logo para fachada, rótulos e demais materiais</div>
+      </div>
+    </div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-pessoal">Pessoal</span>
+        <div class="task-text">Imposto de renda — buscar informações</div>
+      </div>
+    </div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-animais">Animais</span>
+        <div class="task-text">Comprar 5 kg de ração para os pintos</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer">
+    <span class="progress-text" id="progress-text">0 de 4 feito</span>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const hoje = new Date();
+  const opts = { weekday: 'long', day: 'numeric', month: 'long' };
+  document.getElementById('data-hoje').textContent =
+    hoje.toLocaleDateString('pt-BR', opts).replace(/^\w/, c => c.toUpperCase());
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const tasks = document.querySelectorAll('.task');
+    const done = document.querySelectorAll('.task.done').length;
+    const total = tasks.length;
+    document.getElementById('progress-text').textContent = `${done} de ${total} feito${done !== 1 ? 's' : ''}`;
+    document.getElementById('progress-bar').style.width = `${(done / total) * 100}%`;
+  }
+</script>
+</body>
+</html>

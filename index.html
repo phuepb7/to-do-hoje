@@ -13,6 +13,7 @@
     --marrom: #5c3a1e;
     --ouro: #c9963a;
     --verde: #3d6b47;
+    --azul: #2e5f8a;
     --cinza-claro: #e8dcc8;
   }
 
@@ -38,9 +39,7 @@
     border-radius: 4px;
     width: 100%;
     max-width: 460px;
-    box-shadow:
-      4px 4px 0px rgba(92,58,30,0.12),
-      0 20px 60px rgba(92,58,30,0.15);
+    box-shadow: 4px 4px 0px rgba(92,58,30,0.12), 0 20px 60px rgba(92,58,30,0.15);
     overflow: hidden;
     animation: fadeUp 0.5s ease both;
   }
@@ -98,28 +97,37 @@
   }
 
   .tasks {
-    padding: 24px 28px 30px;
+    padding: 20px 28px 24px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(92,58,30,0.4);
+    margin: 16px 0 6px 4px;
+  }
+
+  .section-title:first-child {
+    margin-top: 4px;
   }
 
   .task {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     border-radius: 3px;
     cursor: pointer;
     transition: background 0.18s, transform 0.15s;
     border: 1px solid transparent;
     animation: slideIn 0.4s ease both;
   }
-
-  .task:nth-child(1) { animation-delay: 0.08s; }
-  .task:nth-child(2) { animation-delay: 0.16s; }
-  .task:nth-child(3) { animation-delay: 0.24s; }
-  .task:nth-child(4) { animation-delay: 0.32s; }
 
   @keyframes slideIn {
     from { opacity: 0; transform: translateX(-12px); }
@@ -134,7 +142,7 @@
 
   .task.done .task-text {
     text-decoration: line-through;
-    opacity: 0.45;
+    opacity: 0.4;
   }
 
   .task.done .check {
@@ -171,9 +179,7 @@
     transition: opacity 0.2s;
   }
 
-  .task-content {
-    flex: 1;
-  }
+  .task-content { flex: 1; }
 
   .task-tag {
     font-size: 9.5px;
@@ -191,12 +197,15 @@
   .tag-negocio   { background: rgba(201,150,58,0.15); color: #8a6520; }
   .tag-pessoal   { background: rgba(61,107,71,0.13);  color: var(--verde); }
   .tag-animais   { background: rgba(92,58,30,0.1);    color: var(--marrom); }
+  .tag-institucional { background: rgba(46,95,138,0.12); color: var(--azul); }
+  .tag-compras   { background: rgba(130,60,130,0.1);  color: #6b3070; }
+  .tag-conteudo  { background: rgba(40,120,80,0.12);  color: #1e6b45; }
 
   .task-text {
     font-size: 15px;
     color: var(--marrom);
     line-height: 1.45;
-    transition: opacity 0.2s, text-decoration 0.2s;
+    transition: opacity 0.2s;
   }
 
   .footer {
@@ -240,13 +249,38 @@
   <div class="divider"></div>
   <div class="tasks" id="task-list">
 
+    <!-- INSTITUCIONAL / ARTICULAÇÃO -->
+    <div class="section-title">Institucional</div>
+
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
-        <span class="task-tag tag-logistica">Logística</span>
-        <div class="task-text">Buscar cavalete em Vinicius</div>
+        <span class="task-tag tag-institucional">Institucional</span>
+        <div class="task-text">Fernando — Secretaria de Agricultura</div>
       </div>
     </div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-institucional">Institucional</span>
+        <div class="task-text">Ligar para João Paulo</div>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="section-title">Conteúdo</div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-conteudo">Conteúdo</span>
+        <div class="task-text">Fazer vídeo com João Paulo</div>
+      </div>
+    </div>
+
+    <!-- NEGÓCIO -->
+    <div class="section-title">Negócio</div>
 
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
@@ -259,8 +293,19 @@
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
-        <span class="task-tag tag-pessoal">Pessoal</span>
-        <div class="task-text">Imposto de renda — buscar informações</div>
+        <span class="task-tag tag-negocio">Negócio</span>
+        <div class="task-text">Passar no serralheiro</div>
+      </div>
+    </div>
+
+    <!-- ANIMAIS -->
+    <div class="section-title">Animais</div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-animais">Animais</span>
+        <div class="task-text">Pegar último conjunto de vacinas para Ceará</div>
       </div>
     </div>
 
@@ -272,9 +317,50 @@
       </div>
     </div>
 
+    <!-- COMPRAS -->
+    <div class="section-title">Compras</div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-compras">Compras</span>
+        <div class="task-text">Comprar fígado de boi</div>
+      </div>
+    </div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-compras">Compras</span>
+        <div class="task-text">Comprar limões</div>
+      </div>
+    </div>
+
+    <!-- LOGÍSTICA -->
+    <div class="section-title">Logística</div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-logistica">Logística</span>
+        <div class="task-text">Buscar cavalete em Vinicius</div>
+      </div>
+    </div>
+
+    <!-- PESSOAL -->
+    <div class="section-title">Pessoal</div>
+
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-pessoal">Pessoal</span>
+        <div class="task-text">Imposto de renda — buscar informações</div>
+      </div>
+    </div>
+
   </div>
   <div class="footer">
-    <span class="progress-text" id="progress-text">0 de 4 feito</span>
+    <span class="progress-text" id="progress-text">0 de 12 feitos</span>
     <div class="progress-bar-wrap">
       <div class="progress-bar" id="progress-bar" style="width:0%"></div>
     </div>
@@ -296,7 +382,8 @@
     const tasks = document.querySelectorAll('.task');
     const done = document.querySelectorAll('.task.done').length;
     const total = tasks.length;
-    document.getElementById('progress-text').textContent = `${done} de ${total} feito${done !== 1 ? 's' : ''}`;
+    document.getElementById('progress-text').textContent =
+      `${done} de ${total} feito${done !== 1 ? 's' : ''}`;
     document.getElementById('progress-bar').style.width = `${(done / total) * 100}%`;
   }
 </script>

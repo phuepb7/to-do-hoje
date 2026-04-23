@@ -14,7 +14,6 @@
     --ouro: #c9963a;
     --verde: #3d6b47;
     --azul: #2e5f8a;
-    --cinza-claro: #e8dcc8;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -66,7 +65,6 @@
   }
 
   .header-label {
-    font-family: 'Lora', serif;
     font-style: italic;
     font-size: 12px;
     letter-spacing: 2.5px;
@@ -88,7 +86,6 @@
     margin-top: 8px;
     font-size: 12.5px;
     color: rgba(242,232,213,0.55);
-    letter-spacing: 0.5px;
   }
 
   .divider {
@@ -104,7 +101,6 @@
   }
 
   .section-title {
-    font-family: 'Lora', serif;
     font-style: italic;
     font-size: 10.5px;
     letter-spacing: 2px;
@@ -113,9 +109,7 @@
     margin: 16px 0 6px 4px;
   }
 
-  .section-title:first-child {
-    margin-top: 4px;
-  }
+  .section-title:first-child { margin-top: 4px; }
 
   .task {
     display: flex;
@@ -126,12 +120,6 @@
     cursor: pointer;
     transition: background 0.18s, transform 0.15s;
     border: 1px solid transparent;
-    animation: slideIn 0.4s ease both;
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-12px); }
-    to { opacity: 1; transform: translateX(0); }
   }
 
   .task:hover {
@@ -140,24 +128,12 @@
     transform: translateX(2px);
   }
 
-  .task.done .task-text {
-    text-decoration: line-through;
-    opacity: 0.4;
-  }
-
-  .task.done .check {
-    background: var(--verde);
-    border-color: var(--verde);
-  }
-
-  .task.done .check::after {
-    opacity: 1;
-  }
+  .task.done .task-text { text-decoration: line-through; opacity: 0.4; }
+  .task.done .check { background: var(--verde); border-color: var(--verde); }
+  .task.done .check::after { opacity: 1; }
 
   .check {
-    width: 22px;
-    height: 22px;
-    min-width: 22px;
+    width: 22px; height: 22px; min-width: 22px;
     border: 2px solid rgba(92,58,30,0.3);
     border-radius: 50%;
     margin-top: 1px;
@@ -167,23 +143,16 @@
 
   .check::after {
     content: '✓';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.2s;
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 11px; font-weight: bold;
+    opacity: 0; transition: opacity 0.2s;
   }
 
   .task-content { flex: 1; }
 
   .task-tag {
     font-size: 9.5px;
-    font-family: 'Lora', serif;
     font-style: italic;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -193,13 +162,13 @@
     display: inline-block;
   }
 
-  .tag-logistica { background: rgba(184,76,46,0.12); color: var(--terracota); }
-  .tag-negocio   { background: rgba(201,150,58,0.15); color: #8a6520; }
-  .tag-pessoal   { background: rgba(61,107,71,0.13);  color: var(--verde); }
-  .tag-animais   { background: rgba(92,58,30,0.1);    color: var(--marrom); }
-  .tag-institucional { background: rgba(46,95,138,0.12); color: var(--azul); }
-  .tag-compras   { background: rgba(130,60,130,0.1);  color: #6b3070; }
-  .tag-conteudo  { background: rgba(40,120,80,0.12);  color: #1e6b45; }
+  .tag-logistica     { background: rgba(184,76,46,0.12);  color: var(--terracota); }
+  .tag-negocio       { background: rgba(201,150,58,0.15); color: #8a6520; }
+  .tag-pessoal       { background: rgba(61,107,71,0.13);  color: var(--verde); }
+  .tag-animais       { background: rgba(92,58,30,0.1);    color: var(--marrom); }
+  .tag-institucional { background: rgba(46,95,138,0.12);  color: var(--azul); }
+  .tag-compras       { background: rgba(130,60,130,0.1);  color: #6b3070; }
+  .tag-conteudo      { background: rgba(40,120,80,0.12);  color: #1e6b45; }
 
   .task-text {
     font-size: 15px;
@@ -216,18 +185,12 @@
     border-top: 1px solid rgba(92,58,30,0.1);
   }
 
-  .progress-text {
-    font-size: 12px;
-    color: rgba(92,58,30,0.5);
-    font-style: italic;
-  }
+  .progress-text { font-size: 12px; color: rgba(92,58,30,0.5); font-style: italic; }
 
   .progress-bar-wrap {
-    width: 100px;
-    height: 4px;
+    width: 100px; height: 4px;
     background: rgba(92,58,30,0.1);
-    border-radius: 2px;
-    overflow: hidden;
+    border-radius: 2px; overflow: hidden;
   }
 
   .progress-bar {
@@ -239,7 +202,6 @@
 </style>
 </head>
 <body>
-
 <div class="card">
   <div class="header">
     <div class="header-label">Lista do dia</div>
@@ -247,11 +209,9 @@
     <div class="header-date" id="data-hoje"></div>
   </div>
   <div class="divider"></div>
-  <div class="tasks" id="task-list">
+  <div class="tasks">
 
-    <!-- INSTITUCIONAL / ARTICULAÇÃO -->
     <div class="section-title">Institucional</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -259,7 +219,6 @@
         <div class="task-text">Fernando — Secretaria de Agricultura</div>
       </div>
     </div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -268,9 +227,14 @@
       </div>
     </div>
 
-    <!-- CONTEÚDO -->
     <div class="section-title">Conteúdo</div>
-
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-conteudo">Conteúdo</span>
+        <div class="task-text">Gravar vídeo Expo Pombal — 17h</div>
+      </div>
+    </div>
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -278,10 +242,15 @@
         <div class="task-text">Fazer vídeo com João Paulo</div>
       </div>
     </div>
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-conteudo">Conteúdo</span>
+        <div class="task-text">Marcar ensaio de podcast no fds com Vitor e a turma</div>
+      </div>
+    </div>
 
-    <!-- NEGÓCIO -->
     <div class="section-title">Negócio</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -289,7 +258,6 @@
         <div class="task-text">Criar logo para fachada, rótulos e demais materiais</div>
       </div>
     </div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -298,9 +266,7 @@
       </div>
     </div>
 
-    <!-- ANIMAIS -->
     <div class="section-title">Animais</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -308,7 +274,20 @@
         <div class="task-text">Pegar último conjunto de vacinas para Ceará</div>
       </div>
     </div>
-
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-animais">Animais</span>
+        <div class="task-text">Saber qual veneno do capim usar</div>
+      </div>
+    </div>
+    <div class="task" onclick="toggle(this)">
+      <div class="check"></div>
+      <div class="task-content">
+        <span class="task-tag tag-animais">Animais</span>
+        <div class="task-text">Verificar se ainda tem veneno da palma</div>
+      </div>
+    </div>
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -317,9 +296,7 @@
       </div>
     </div>
 
-    <!-- COMPRAS -->
     <div class="section-title">Compras</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -327,7 +304,6 @@
         <div class="task-text">Comprar fígado de boi</div>
       </div>
     </div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -336,9 +312,7 @@
       </div>
     </div>
 
-    <!-- LOGÍSTICA -->
     <div class="section-title">Logística</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -347,9 +321,7 @@
       </div>
     </div>
 
-    <!-- PESSOAL -->
     <div class="section-title">Pessoal</div>
-
     <div class="task" onclick="toggle(this)">
       <div class="check"></div>
       <div class="task-content">
@@ -360,7 +332,7 @@
 
   </div>
   <div class="footer">
-    <span class="progress-text" id="progress-text">0 de 12 feitos</span>
+    <span class="progress-text" id="progress-text">0 de 15 feitos</span>
     <div class="progress-bar-wrap">
       <div class="progress-bar" id="progress-bar" style="width:0%"></div>
     </div>
